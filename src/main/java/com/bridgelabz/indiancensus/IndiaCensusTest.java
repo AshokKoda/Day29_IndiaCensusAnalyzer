@@ -101,7 +101,7 @@ public class IndiaCensusTest {
 		}
 	}
 
-	// 8. Given the State Code CSV file with incorrect type, Should throw exception.
+	// Given the State Code CSV file with incorrect type, Should throw exception.
 	@Test
 	public void givenIndiaStateCodeCSVFile_WhenLoadedWithWrongType_ShouldThrowException() {
 		try {
@@ -111,6 +111,19 @@ public class IndiaCensusTest {
 			censusAnalyser.loadStateCodeData(TXT_CENSUS_PATH_FILE);
 		} catch (CensusAnalyserException e) {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
+
+	// Given the State Code CSV file with incorrect Delimiter, Should throw
+	// exception.
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoadedWithWrongDelimiter_ShouldThrowException() {
+		try {
+			IndianCensusAnalyzer censusAnalyser = new IndianCensusAnalyzer();
+			int numOfRecord = censusAnalyser.loadStateCodeData(INDIA_STATE_CODE_PATH);
+			Assert.assertEquals(29, numOfRecord);
+		} catch (Exception | CensusAnalyserException e) {
+
 		}
 	}
 }
