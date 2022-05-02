@@ -2,8 +2,8 @@ package com.bridgelabz.indiancensus;
 
 public class CensusAnalyserException extends Throwable {
 
-	private final String message;
-    private final ExceptionType type;
+	private String message;
+    public ExceptionType type;
 
     enum ExceptionType {
         CENSUS_FILE_PROBLEM
