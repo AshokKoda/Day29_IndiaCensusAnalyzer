@@ -12,7 +12,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 public class IndianCensusAnalyzer {
 
 	String path = "D:/Eclipse_LFP_112/IndiaStateCensusAnalyser/src/main/resources/IndiaStateCensusData.csv";
-	public int loadIndiaCensusData() throws CensusAnalyserException {
+	public int loadIndiaCensusData(String path) throws CensusAnalyserException {
 
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(path));
