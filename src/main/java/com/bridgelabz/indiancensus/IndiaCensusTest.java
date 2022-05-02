@@ -100,4 +100,17 @@ public class IndiaCensusTest {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
 		}
 	}
+
+	// 8. Given the State Code CSV file with incorrect type, Should throw exception.
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoadedWithWrongType_ShouldThrowException() {
+		try {
+			IndianCensusAnalyzer censusAnalyser = new IndianCensusAnalyzer();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadStateCodeData(TXT_CENSUS_PATH_FILE);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
 }
