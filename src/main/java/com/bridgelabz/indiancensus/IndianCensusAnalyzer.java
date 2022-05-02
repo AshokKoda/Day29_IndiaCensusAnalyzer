@@ -11,7 +11,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 public class IndianCensusAnalyzer {
 
-	String path = "D:/Eclipse_LFP_112/IndiaStateCensusAnalyser/src/main/resources/IndiaStateCensusData.csv";
+	static String path = "D:/Eclipse_LFP_112/IndiaStateCensusAnalyser/src/main/resources/IndiaStateCensusData.csv";
 	public int loadIndiaCensusData(String path) throws CensusAnalyserException {
 
 		try {
@@ -38,7 +38,7 @@ public class IndianCensusAnalyzer {
 		
 		try {
 			IndianCensusAnalyzer census = new IndianCensusAnalyzer();
-			census.loadIndiaCensusData();
+			census.loadIndiaCensusData(path);
 		} catch (CensusAnalyserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
