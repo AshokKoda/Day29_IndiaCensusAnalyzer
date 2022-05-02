@@ -10,7 +10,7 @@ public class IndiaCensusTest {
 	private static final String WRONG_CENSUS_PATH_FILE = "";
 	private static final String TXT_CENSUS_PATH_FILE = "D:/Eclipse_LFP_112/IndiaStateCensusAnalyser/src/main/resources/IndiaStateCode.txt";
 	private static final String INDIA_STATE_CODE_PATH = "D:/Eclipse_LFP_112/IndiaStateCensusAnalyser/src/main/resources/IndiaStateCode.csv";
-	
+
 	// Given the States Census CSV file, Check to ensure the Number of Record
 	// matches.
 	@Test
@@ -75,16 +75,29 @@ public class IndiaCensusTest {
 
 		}
 	}
-	
-	 //Given the States Code CSV file, Check to ensure the Number of Record matches.
-    @Test
-    public void givenIndiaStateCodeCSVFile_WhenLoaded_ShouldReturnCorrectRecords() {
-        try {
-        	IndianCensusAnalyzer censusAnalyser = new IndianCensusAnalyzer();
-            int numOfRecord = censusAnalyser.loadStateCodeData(INDIA_STATE_CODE_PATH);
-            Assert.assertEquals(37, numOfRecord);
-        } catch (CensusAnalyserException e) {
 
-        }
-    }
+	// Given the States Code CSV file, Check to ensure the Number of Record matches.
+	@Test
+	public void givenIndiaStateCodeCSVFile_WhenLoaded_ShouldReturnCorrectRecords() {
+		try {
+			IndianCensusAnalyzer censusAnalyser = new IndianCensusAnalyzer();
+			int numOfRecord = censusAnalyser.loadStateCodeData(INDIA_STATE_CODE_PATH);
+			Assert.assertEquals(37, numOfRecord);
+		} catch (CensusAnalyserException e) {
+
+		}
+	}
+
+	// Given the State Census CSV file incorrect, returns a custom exception.
+	@Test
+	public void givenIndiaStateCodeData_WithWrongFile_ShouldThrowException() {
+		try {
+			IndianCensusAnalyzer censusAnalyser = new IndianCensusAnalyzer();
+			ExpectedException exceptionRule = ExpectedException.none();
+			exceptionRule.expect(CensusAnalyserException.class);
+			censusAnalyser.loadStateCodeData(WRONG_CENSUS_PATH_FILE);
+		} catch (CensusAnalyserException e) {
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+		}
+	}
 }
